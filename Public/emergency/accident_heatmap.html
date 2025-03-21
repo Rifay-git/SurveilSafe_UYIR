@@ -1,0 +1,19 @@
+import folium
+import pandas as pd
+from folium.plugins import HeatMap
+
+# Load accident data from CSV
+df = pd.read_csv("accidents.csv")
+
+# Initialize a Folium Map centered at an approximate location
+m = folium.Map(location=[df["latitude"].mean(), df["longitude"].mean()], zoom_start=12)
+
+# Add Heatmap Layer
+heat_data = df[["latitude", "longitude"]].values.tolist()
+HeatMap(heat_data).add_to(m)
+
+# Save the map to the correct directory inside Public/emergency/
+heatmap_path = "Public/emergency/accident_heatmap.html"
+m.save(heatmap_path)
+
+print(f"Heatmap saved at {heatmap_path}. Open it in your browser.")
