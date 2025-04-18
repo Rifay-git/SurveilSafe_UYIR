@@ -16,10 +16,10 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 
-app.use('/protected', authenticateUser, express.static('public'));
-app.use('/emergency', authenticateEmergencyUser, express.static('public'));
-app.use('/hazards', authenticateHazardsUser, express.static('public'));
-app.use(express.static('public'));
+app.use('/protected', authenticateUser, express.static('./public'));
+app.use('/emergency', authenticateEmergencyUser, express.static('./public'));
+app.use('/hazards', authenticateHazardsUser, express.static('./public'));
+app.use(express.static('./public'));
 
 app.use('/api/users', userRoutes);
 app.use('/api/emergency', authenticateEmergencyUser, emergencyRoutes);

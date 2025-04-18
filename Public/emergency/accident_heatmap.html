@@ -1,19 +1,127 @@
-import folium
-import pandas as pd
-from folium.plugins import HeatMap
+<!DOCTYPE html>
+<html>
 
-# Load accident data from CSV
-df = pd.read_csv("accidents.csv")
+<head>
 
-# Initialize a Folium Map centered at an approximate location
-m = folium.Map(location=[df["latitude"].mean(), df["longitude"].mean()], zoom_start=12)
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-# Add Heatmap Layer
-heat_data = df[["latitude", "longitude"]].values.tolist()
-HeatMap(heat_data).add_to(m)
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
 
-# Save the map to the correct directory inside Public/emergency/
-heatmap_path = "Public/emergency/accident_heatmap.html"
-m.save(heatmap_path)
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <style>
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css" />
 
-print(f"Heatmap saved at {heatmap_path}. Open it in your browser.")
+    <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        #map_8ad588a0b5e0632b2e82025cfb334182 {
+            position: relative;
+            width: 100.0%;
+            height: 100.0%;
+            left: 0.0%;
+            top: 0.0%;
+        }
+
+        .leaflet-container {
+            font-size: 1rem;
+        }
+    </style>
+
+    <script
+        src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+
+<body>
+
+
+    <div class="folium-map" id="map_8ad588a0b5e0632b2e82025cfb334182"></div>
+
+</body>
+<script>
+
+
+    var map_8ad588a0b5e0632b2e82025cfb334182 = L.map(
+        "map_8ad588a0b5e0632b2e82025cfb334182",
+        {
+            center: [11.013000000000002, 76.97129],
+            crs: L.CRS.EPSG3857,
+            ...{
+                "zoom": 12,
+                "zoomControl": true,
+                "preferCanvas": false,
+            }
+
+        }
+    );
+
+
+
+
+
+    var tile_layer_a947c91afd07e25e665c17ea9d6b8a82 = L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+            "minZoom": 0,
+            "maxZoom": 19,
+            "maxNativeZoom": 19,
+            "noWrap": false,
+            "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+            "subdomains": "abc",
+            "detectRetina": false,
+            "tms": false,
+            "opacity": 1,
+        }
+
+    );
+
+
+    tile_layer_a947c91afd07e25e665c17ea9d6b8a82.addTo(map_8ad588a0b5e0632b2e82025cfb334182);
+
+
+    var heat_map_b58323d15b6a9f981f14e317ecfb5502 = L.heatLayer(
+        [[11.01, 76.96], [11.07, 77.0029], [11.02, 76.96], [10.99, 76.99], [11.01, 76.98], [10.98, 76.92], [11.02, 77.02], [10.99, 76.98], [11.03, 76.95], [11.01, 76.95]],
+        {
+            "minOpacity": 0.5,
+            "maxZoom": 18,
+            "radius": 25,
+            "blur": 15,
+        }
+    );
+
+
+    heat_map_b58323d15b6a9f981f14e317ecfb5502.addTo(map_8ad588a0b5e0632b2e82025cfb334182);
+
+</script>
+
+</html>
