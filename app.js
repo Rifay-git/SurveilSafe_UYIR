@@ -5,6 +5,7 @@ const userRoutes = require('./Routes/UserRoutes');
 const emergencyRoutes = require('./Routes/EmergencyRoutes');
 const hazardsRouter = require('./Routes/HazardsRoutes');
 const dotenv = require('dotenv');
+const path = require('path');
 const {authenticateUser, authenticateEmergencyUser, authenticateHazardsUser, checkForTocken} = require('./Middleware/AuthMiddleware')
 
 dotenv.config();
@@ -16,10 +17,10 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 
-app.use('/protected', authenticateUser, express.static('./public'));
-app.use('/emergency', authenticateEmergencyUser, express.static('./public'));
-app.use('/hazards', authenticateHazardsUser, express.static('./public'));
-app.use(express.static('./public'));
+app.use('/protected', authenticateUser, express.static(path.join(__dirname, 'public')));
+app.use('/emergency', authenticateEmergencyUser, express.static(path.join(__dirname, 'public')));
+app.use('/hazards', authenticateHazardsUser, express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/users', userRoutes);
 app.use('/api/emergency', authenticateEmergencyUser, emergencyRoutes);
